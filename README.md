@@ -93,8 +93,7 @@ should have changed its starting position in simulator.**
 
 ## Deliverables and Submission
 Students will maintain a private github repository, cloning this repo and
-sharing collaboration rights with the TA. In addition to the three
-deliverables described in this document, fill in the answers to the
+sharing collaboration rights with the TA. Fill in the answers to the
 questions listed in **`SUBMISSION.md`**. 
 
 Students will add the TA to their labs as a collaborator. The TA's
