@@ -97,7 +97,7 @@ sharing collaboration rights with the TA. Fill in the answers to the
 questions listed in **`SUBMISSION.md`**. 
 
 Students will add the TA to their labs as a collaborator. The TA's
-gitHub: [https://github.com/Breanna-Geller]. 
+gitHub: [https://github.com/ederic-oytas]. 
 
 
 ## Grading Rubric
