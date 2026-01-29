@@ -2,7 +2,9 @@
 
 ## Learning Goals
 
-Understanding Rigid Body Transformations in the simulation environment
+* Understand how to apply Rigid Body transformations in ROS 2.
+* Understand how to use ROS 2 TF2 tools for monitoring transform data.
+* Understand how to programmatically use the ROS 2 TF2 API.
 
 ## Before you start
 
