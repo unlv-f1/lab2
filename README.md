@@ -6,7 +6,9 @@
 * Understand how to use ROS 2 TF2 tools for monitoring transform data.
 * Understand how to programmatically use the ROS 2 TF2 API.
 
-## Before you start
+## Part 1: Using TF2 Tools
+
+### Before you start
 
 This section is a review the commands for starting the simulator and keyboard
 controller in Lab 1.
@@ -44,7 +46,7 @@ Have these two terminals up and running as you do the next lab.
 
 If you need further reference, refer to Lab 1 [Section 3.2](https://github.com/unlv-f1/lab1?tab=readme-ov-file#3-launching-the-simulator) for instructions.  
 
-## 1. Transforms
+### 1. Transforms
 
 RViz provides a way to visualize topics as they are being published to. This
 includes data such as:
@@ -66,7 +68,7 @@ of the **Transform Tree**, which shows the hierarchy of transformation frames.
 To observe how the transform frames are changing in real time, drive around the
 car using `teleop_twist_keyboard`.
 
-## TF2 Tools
+### TF2 Tools
 
 Let's try to generate a diagram for our transform tree. **Do not close your**
 **`f1tenth_gym_ros` and your `teleop_twist_keyboard` commands.** First, start
@@ -129,7 +131,7 @@ At time 1622031732.614745114
 The translation from the above output will be in the form [x,y,z], while the quaternion for rotation is
 [x,y,z,w]. (*Note: A rotation matrix of [0,0,0,1] means there is no rotation.*)
 
-## **LaserScan** for Vehicle Model
+### **LaserScan** for Vehicle Model
 The best way for the vehicle to assess its current distance from the nearest wall is to access the vehicle’s
 **LaserScan** data. However, there is currently no transform that accurately delivers our measurement
 information.
@@ -143,7 +145,7 @@ the data from the **LaserScan** and transform the information so that it is corr
 position.
 Students will need to take the measurements from 0 for each starting position. (*Tip: Students can parse this information from the commandline using:* ``` ros2 topic echo /scan -l [LaserIndex]```)
 
-## Understanding **LaserScan** Readings
+### Understanding **LaserScan** Readings
 
 Documentation on the Laser_Scan can be found under the Resources section below. **Note: This format is available
 through lookup for *any* topic. Just search the name of the topic, followed by "documentation" in any search
@@ -155,7 +157,7 @@ Below is an image to help visualize the information the documentation provides.
 
 
 
-## Vehicle Position
+### Vehicle Position
 
 To answer the questions posed on Canvas, students will need to change the starting position of the vehicle
 within the simulator multiple times, and provide the results for each change. Access the file located within
@@ -167,6 +169,9 @@ starting pose to the following:
 **Rebuild the workspace after making any changes to the *.yaml* file and relaunch the gym. The vehicle
 should have changed its starting position in simulator.**
 
+## Part 2: Using ROS 2 TF2 Programmatically
+
+TODO: Finish this section
 
 ## Deliverables and Submission
 Students will maintain a private github repository, cloning this repo and
@@ -178,7 +183,6 @@ Students will add the TA to their labs as a collaborator.
 ## Grading Rubric
 
 - SUBMISSION.md Responses: **100** Points
-
 
 ## Resources
 
