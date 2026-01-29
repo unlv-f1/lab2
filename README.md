@@ -50,23 +50,23 @@ At time 1622031732.614745114
 ```
 
 The translation from the above output will be in the form [x,y,z], while the quaternion for rotation is
-[x,y,z,w]. (*Note: A rotation matrix of [0,0,0,1] typically means there is no rotation.*)
+[x,y,z,w]. (*Note: A rotation matrix of [0,0,0,1] means there is no rotation.*)
 
-## **Laser_Scan** for Vehicle Model
+## **LaserScan** for Vehicle Model
 The best way for the vehicle to assess its current distance from the nearest wall is to access the vehicle’s
-**Laser_Scan** data. However, there is currently no transform that accurately delivers our measurement
+**LaserScan** data. However, there is currently no transform that accurately delivers our measurement
 information.
 
 ![Car TF Visual](img/robot_model.PNG)
 
 As pictured above, there are two transform frames for the laser: *ego_racecar/laser* and
-*ego_racecar/laser_model*. The information from our **Laser_Scan** topic gives us the measurements from
+*ego_racecar/laser_model*. The information from our **LaserScan** topic gives us the measurements from
 the wall to the laser, when in reality, this is not on model for the vehicle. Students will need to parse
-the data from the **Laser_Scan** and transform the information so that it is correct for the given *laser_model*
+the data from the **LaserScan** and transform the information so that it is correct for the given *laser_model*
 position.
 Students will need to take the measurements from 0 for each starting position. (*Tip: Students can parse this information from the commandline using:* ``` ros2 topic echo /scan -l [LaserIndex]```)
 
-## Understanding **Laser_Scan** Readings
+## Understanding **LaserScan** Readings
 
 Documentation on the Laser_Scan can be found under the Resources section below. **Note: This format is available
 through lookup for *any* topic. Just search the name of the topic, followed by "documentation" in any search
@@ -107,4 +107,4 @@ Students will add the TA to their labs as a collaborator.
 
 - [Adding Collaborator to GitHub](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
 
-- [**Laser_Scan** Documentation](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html)
+- [**LaserScan** Documentation](https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html)
