@@ -44,17 +44,25 @@ If you need further reference, refer to Lab 1 [Section 3.2](https://github.com/u
 
 ## 1. Transforms
 
-Rviz gives students the ability to visualize topics that are being published or subscribed to. This includes
-transforms. Within rviz2, students can add and create visualization by type or topic. To do this, find the **Add**
-button on the bottom left of the rviz **Displays** panel. For this lab, students may add *by display type* the transform hierarchy, **TF**. The side panel **Displays** will now include **TF**, which will include all transform frames of the vehicle.
+RViz provides a way to visualize topics as they are being published to. This
+includes data such as:
+
+* Odometry data
+* Laser scan data
+* Transform data
+* Markers
+
+Let's add a new visualization. To do this, click the **Add** at the bottom left
+corner of RViz. This will bring up a popup for selecting a visualization to add.
+Ensure that the **By display type** tab is selected and scroll down to **TF**
+and click it. Then, click the **OK** button.
 
 ![locating TF](img/lab1%20TF%20.png)
 
-
-**TF** also allows visualization of the **Tree**, which grants insight into the transform hierarchy- which topics
-are being transformed from which topics. To observe how the transform frames are operating in real
-time, students can drive the vehicle around using the keyboard controls. Make sure to run the
-command in a separate terminal.
+The side panel **Displays** will now include **TF**. This allows visualization
+of the **Transform Tree**, which shows the hierarchy of transformation frames.
+To observe how the transform frames are changing in real time, drive around the
+car using `teleop_twist_keyboard`.
 
 ## TF2-Tools
 There are ros2 dependencies that can help to make the information shown within rviz2 more digestible.
