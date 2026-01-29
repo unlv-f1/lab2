@@ -6,7 +6,41 @@ Understanding Rigid Body Transformations in the simulation environment
 
 ## Before you start
 
-Students should have the simulator launched and keyboard teleop commands running. Refer to Lab 1 [Section 3.2](https://github.com/unlv-f1/lab1?tab=readme-ov-file#3-launching-the-simulator) for instructions.  
+This section is a review the commands for starting the simulator and keyboard
+controller in Lab 1.
+
+Start your Docker container. Then, start a new terminal. First, change your
+current directory to `/sim_ws` using:
+
+```bash
+cd /sim_ws
+```
+
+Set up your terminal environment by sourcing the ROS 2 underlay and `/sim_ws`
+overlay:
+
+```bash
+source /opt/ros/foxy/setup.bash          # source underlay
+source /sim_ws/install/local_setup.bash  # source /sim_ws overlay
+```
+
+Then, you can run the RViz simulator using:
+
+```bash
+ros2 launch f1tenth_gym_ros gym_bridge_launch.py
+```
+
+After this, in a new terminal, run the following:
+
+```bash
+cd /sim_ws
+source /opt/ros/foxy/setup.bash          # source underlay
+ros2 launch teleop_twist_keyboard teleop_twist_keyboard
+```
+
+Have these two terminals up and running as you do the next lab.
+
+If you need further reference, refer to Lab 1 [Section 3.2](https://github.com/unlv-f1/lab1?tab=readme-ov-file#3-launching-the-simulator) for instructions.  
 
 ## 1. Transforms
 
