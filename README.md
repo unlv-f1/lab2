@@ -64,12 +64,45 @@ of the **Transform Tree**, which shows the hierarchy of transformation frames.
 To observe how the transform frames are changing in real time, drive around the
 car using `teleop_twist_keyboard`.
 
-## TF2-Tools
-There are ros2 dependencies that can help to make the information shown within rviz2 more digestible.
-For this, students will install dependencies using:
+## TF2 Tools
+
+Let's try to generate a diagram for our transform tree. **Do not close your**
+**`f1tenth_gym_ros` and your `teleop_twist_keyboard` commands.** First, start
+a new terminal and run the following:
+
 ```bash
-user@f1sim:~$ sudo apt-get install ros-foxy-tf2-tools ros-foxy-tf-transformations
+cd /sim_ws                       # be in /sim_ws folder
+source /opt/ros/foxy/setup.bash  # source underlay
 ```
+
+Run the following command to generate a diagram of the transform tree:
+
+```
+ros2 run tf2_tools view_frames.py
+```
+
+If you use `ls`, you should see two new files in your current directory, named
+`frames.pdf` and `frames.gv`.
+
+If you open `frames.pdf` with a PDF viewer, you should see the following:
+
+![alt text](img/frames-pdf-screenshot.png)
+
+>
+> **Opening `frames.pdf`**
+>
+> For those who have integrated VS Code into your environment, you may use
+> VS Code to open `frames.pdf`:
+>
+> ```bash
+> code frames.pdf
+> ```
+>
+> Otherwise, one way to view the PDF is to move it to a mounted folder, then
+> outside the container, read it locally with a PDF viewer (e.g. Firefox PDF
+> viewer, Google Chrome PDF viewer).
+> 
+
 
 With the simulator running, students can run the following command to visualize a transform hierarchy
 tree:
