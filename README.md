@@ -66,13 +66,13 @@ You can do this either by using or using volume mounts.
 
 ## Part 1: Using TF2 Tools
 
-### Simulator setup
+### 1-1: Simulator setup
 
-This section is a review the commands for starting the simulator and keyboard
-controller in Lab 1.
+This section is a review for the commands for starting the simulator and
+keyboard controller, as you've done for Lab 1.
 
-Start your Docker container. Then, start a new terminal. First, change your
-current directory to `/sim_ws` using:
+Start your Docker container. Then, start a new terminal inside the container.
+First, change your current directory to `/sim_ws` using:
 
 ```bash
 cd /sim_ws
@@ -92,11 +92,12 @@ Then, you can run the RViz simulator using:
 ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 ```
 
-After this, in a new terminal, run the following:
+After this, in a new terminal (inside the container), run the following:
 
 ```bash
 cd /sim_ws
 source /opt/ros/foxy/setup.bash          # source underlay
+# (no need to source any overlay since we're not using any workspace builds)
 ros2 launch teleop_twist_keyboard teleop_twist_keyboard
 ```
 
