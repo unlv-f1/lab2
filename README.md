@@ -66,7 +66,7 @@ You can do this either by using or using volume mounts.
 [lab1-bind-mounts]: https://github.com/unlv-f1/lab1?tab=readme-ov-file#4-creating-a-workspace-and-bind-mounting-it-into-the-docker-container
 [ta-volume-mounts]: https://github.com/ederic-oytas/unlv-f1tenth-vscode-integration?tab=readme-ov-file#2-adding-a-new-volume-mount
 
-## Part 1: Using TF2 Tools
+## Part 1: Familarizing Yourself With Transforms
 
 ### 1-1: Simulator setup
 
