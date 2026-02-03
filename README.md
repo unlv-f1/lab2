@@ -360,8 +360,10 @@ in `transformer.py`:
 
 ```python
 from typing import Optional
+
 import rclpy
 import rclpy.time
+from geometry_msgs.msg import TransformStamped
 from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from tf2_ros import TransformException  # type: ignore
@@ -375,6 +377,9 @@ class TransformerNode(Node):
 
         self.declare_parameter("base_frame")
         self.declare_parameter("laser_frame")
+
+        self.base_frame = self.get_parameter("base_frame").value
+        self.laser_frame = self.get_parameter("laser_frame").value
 
         self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
 
@@ -395,13 +400,10 @@ class TransformerNode(Node):
         # TODO: GET RANGE AT 0 DEGREES; REPLACE 1000 WITH INDEX OF FORWARD
         forward_range = self.latest_scan_msg.ranges[1000]
 
-        base_frame = self.get_parameter("base_frame").value
-        laser_frame = self.get_parameter("laser_frame").value
-
         try:
-            transform_laser_to_base = self.tf_buffer.lookup_transform(
-                base_frame,
-                laser_frame,
+            transform_laser_to_base: TransformStamped = self.tf_buffer.lookup_transform(
+                self.base_frame,
+                self.laser_frame,
                 rclpy.time.Time(),
             )
         except TransformException:
@@ -409,7 +411,7 @@ class TransformerNode(Node):
             return
 
         # TODO: DO YOUR MATH HERE (See TransformStamped documentation)
-        #   Replace ... with your answers!
+        #   Replace ... with your own code!
 
         x_laser = ...
         y_laser = ...
