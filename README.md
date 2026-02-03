@@ -487,7 +487,8 @@ Checklist:
 
 ## Grading Rubric
 
-- SUBMISSION.md Responses: **100** Points
+- SUBMISSION.md Responses: **50** Points
+- `lab2_pkg` Functionality Working: **50** Points
 
 ## Resources
 
