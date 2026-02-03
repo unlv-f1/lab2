@@ -134,7 +134,7 @@ using `teleop_twist_keyboard`.
 > If you ever close one of the panels by mistake and need it back, you can
 > click the **Panels** button in the upper left corner!
 
-### TF2 Tools
+### 1-3: `tf2_tools view_frames.py` - Getting a Transform Tree Diagram
 
 Let's try to generate a diagram for our transform tree. **Do not close your**
 **`f1tenth_gym_ros` and your `teleop_twist_keyboard` commands.** First, start
@@ -147,7 +147,7 @@ source /opt/ros/foxy/setup.bash  # source underlay
 
 Run the following command to generate a diagram of the transform tree:
 
-```
+```bash
 ros2 run tf2_tools view_frames.py
 ```
 
@@ -171,14 +171,9 @@ If you open `frames.pdf` with a PDF viewer, you should see the following:
 > Otherwise, one way to view the PDF is to move it to a mounted folder, then
 > outside the container, read it locally with a PDF viewer (e.g. Firefox PDF
 > viewer, Google Chrome PDF viewer).
-> 
+>
 
-
-With the simulator running, students can run the following command to visualize a transform hierarchy
-tree:
-```bash
-user@f1sim:~$ ros2 run tf2_tools view_frames.py
-```
+### 1-4: `tf2_ros tf2_echo` - Echoing Transformations
 
 The tree will then be available within the directory the command was run as frames.pdf along with
 information about the transforms.
