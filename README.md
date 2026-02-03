@@ -289,16 +289,25 @@ Then, relaunch `f1tenth_gym_ros`:
 ros2 launch f1tenth_gym_ros gym_bridge_launch.py
 ```
 
+### 1-7: Part 1 Deliverable
+
+Fill out the answers for the questions listed in **`SUBMISSION.md`**. You'll
+use some of the techniques explained in the previous section. Ensure that it is
+in your `lab2_ws` folder, which you'll be using as your Github repository,
+whose link will be used for submission.
+
 ## Part 2: Using ROS 2 TF2 Programmatically
 
 TODO: Finish this section
 
-## Deliverables and Submission
-Students will maintain a private github repository, cloning this repo and
-sharing collaboration rights with the TA. Fill in the answers to the
-questions listed in **`SUBMISSION.md`**. 
+## Overall Deliverables and Submission
 
-Students will add the TA to their labs as a collaborator.
+Publish and upload your `lab2_ws` as a *private* Github repository. Share your
+collaboration rights with the TA as a collaborator, and submit a link to the
+repository on canvas. Checklist:
+
+* `SUBMISSION.md` file filled out and present in repository.
+* `lab2_pkg/` package present in repository.
 
 ## Grading Rubric
 
