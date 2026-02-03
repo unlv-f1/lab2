@@ -27,19 +27,21 @@ ${HOME}
   |
   +-- lab2_ws/              -- Lab 2 Workspace folder (ALWAYS BUILD HERE!)
   |     |
-  |     :
+  |     :                   -- Build folders: build/ log/ install/
+  |     :                   -- (present only if you build the workspace)
   |     |
   |     +-- src/            -- Source folder
   |          |
   |          +-- lab2_ws/   -- Lab 2 Package
   |
-  +-- sim_ws/
+  +-- sim_ws/               -- Simulator Workspace folder
         |
-        :
+        :                          -- Build folders: build/ log/ install/
+        :                          -- (present only if build the workspace)
         |
-        +-- src/
+        +-- src/                   -- Source folder
              |
-             +-- f1tenth_gym_ros/
+             +-- f1tenth_gym_ros/  -- Simulator package by F1Tenth
 ```
 
 > **Note on different directories**: You may choose a different directory to use for `${HOME}` for your
