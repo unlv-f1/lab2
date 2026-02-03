@@ -266,17 +266,28 @@ ros2 topic echo /scan -l 270
 This will show 270 elements of the `ranges` array, then you can look at the
 last element shown for the element at index 269!
 
-### Vehicle Position
+### 1-6: Changing initial vehicle position
 
-To answer the questions posed on Canvas, students will need to change the starting position of the vehicle
-within the simulator multiple times, and provide the results for each change. Access the file located within
-/sim_ws/src/f1tenth_gym_ros/config/sim.yaml. Locate and change the values within the ego vehicle’s
-starting pose to the following:
-1. X : 10, Y : 0
-2. X : −10, Y : 9, θ : 10
+To change the initial vehicle position of the car, edit the `sx`, `sy`,
+`stheta` located in `/sim_ws/src/f1tenth_gym_ros/config/sim.yaml` (in
+container). Try the test values: x=−10, y=9, θ=10 for now.
 
-**Rebuild the workspace after making any changes to the *.yaml* file and relaunch the gym. The vehicle
-should have changed its starting position in simulator.**
+> This file is `~/sim_ws/src/f1tenth_gym_ros/config/sim.yaml` locally.
+
+Then, since you changed the configuration, you must rebuild the container.
+First, stop your instance of `f1tenth_gym_ros` then rebuild:
+
+```bash
+cd /sim_ws                       # should ALWAYS build in workspace folder
+colcon build                     # creates build/, install/, log/ directories
+source install/local_setup.bash  # resource overlay because it was rebuilt
+```
+
+Then, relaunch `f1tenth_gym_ros`:
+
+```bash
+ros2 launch f1tenth_gym_ros gym_bridge_launch.py
+```
 
 ## Part 2: Using ROS 2 TF2 Programmatically
 
