@@ -200,6 +200,72 @@ The translation from the above output will be in the form [x,y,z], while the
 quaternion for rotation is [x,y,z,w]. (*Note: The quaternion [0,0,0,1] means
 there is no rotation.*)
 
+### 1-5: Monitoring `/scan`
+
+The `f1tenth_gym_ros` simulator simulates a LiDAR inside RVIZ. This LiDAR
+produces a `ranges` array which is 1080 elements long and spans 270 degrees.
+Ranges are ordered, starting the rightmost range and ends at the leftmost
+range. Below is an illustration of the ranges produced by the LiDAR:
+
+![LiDAR ranges](img/lidar_understanding.png)
+
+These messages are sent to a topic named `/scan` in the simulator and on the
+car. To monitor the `/scan` message, you can use `ros2 topic echo`:
+
+```bash
+ros2 topic echo /scan
+```
+
+Now, you may see the terminal flooded with array values because the ranges
+array is so large. Limit the maximum number of array elements shown using
+the `-l` flag:
+
+```bash
+ros2 topic echo /scan -l 5
+```
+
+This gives us a more manageable message:
+
+```
+header:
+  stamp:
+    sec: 1770106378
+    nanosec: 578596207
+  frame_id: ego_r...
+angle_min: -2.3499999046325684
+angle_max: 2.3499999046325684
+angle_increment: 0.004351851996034384
+time_increment: 0.0
+scan_time: 0.0
+range_min: 0.0
+range_max: 30.0
+ranges:
+- 0.9857617616653442
+- 0.9626373052597046
+- 0.9412933588027954
+- 0.9474082589149475
+- 0.9492465853691101
+- '...'
+intensities: []
+---
+```
+
+This is an instance of a `LaserScan` message. Further documentation on the 
+`LaserScan` message can be found under the [Resources section](#Resources).
+
+> **Note**: Documentation is available online for any message type.
+
+One useful trick you can use with `-l` is examine a particular range value. For
+example, if you want to examine the range at index 269, then you would use the
+command:
+
+```bash
+ros2 topic echo /scan -l 270
+```
+
+This will show 270 elements of the `ranges` array, then you can look at the
+last element shown for the element at index 269!
+
 ### **LaserScan** for Vehicle Model
 The best way for the vehicle to assess its current distance from the nearest wall is to access the vehicle’s
 **LaserScan** data. However, there is currently no transform that accurately delivers our measurement
@@ -207,12 +273,7 @@ information.
 
 ![Car TF Visual](img/robot_model.PNG)
 
-As pictured above, there are two transform frames for the laser: *ego_racecar/laser* and
-*ego_racecar/laser_model*. The information from our **LaserScan** topic gives us the measurements from
-the wall to the laser, when in reality, this is not on model for the vehicle. Students will need to parse
-the data from the **LaserScan** and transform the information so that it is correct for the given *laser_model*
-position.
-Students will need to take the measurements from 0 for each starting position. (*Tip: Students can parse this information from the commandline using:* ``` ros2 topic echo /scan -l [LaserIndex]```)
+Documentation on `Lawser`
 
 ### Understanding **LaserScan** Readings
 
@@ -221,8 +282,6 @@ through lookup for *any* topic. Just search the name of the topic, followed by "
 engine.** 
 
 Below is an image to help visualize the information the documentation provides.
-
-![LiDar](img/lidar_understanding.png)
 
 
 
