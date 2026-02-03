@@ -266,25 +266,6 @@ ros2 topic echo /scan -l 270
 This will show 270 elements of the `ranges` array, then you can look at the
 last element shown for the element at index 269!
 
-### **LaserScan** for Vehicle Model
-The best way for the vehicle to assess its current distance from the nearest wall is to access the vehicle’s
-**LaserScan** data. However, there is currently no transform that accurately delivers our measurement
-information.
-
-![Car TF Visual](img/robot_model.PNG)
-
-Documentation on `Lawser`
-
-### Understanding **LaserScan** Readings
-
-Documentation on the Laser_Scan can be found under the Resources section below. **Note: This format is available
-through lookup for *any* topic. Just search the name of the topic, followed by "documentation" in any search
-engine.** 
-
-Below is an image to help visualize the information the documentation provides.
-
-
-
 ### Vehicle Position
 
 To answer the questions posed on Canvas, students will need to change the starting position of the vehicle
