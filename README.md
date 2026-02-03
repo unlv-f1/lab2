@@ -175,22 +175,30 @@ If you open `frames.pdf` with a PDF viewer, you should see the following:
 
 ### 1-4: `tf2_ros tf2_echo` - Echoing Transformations
 
-The tree will then be available within the directory the command was run as frames.pdf along with
-information about the transforms.
-Students may also retrieve the transforms between any two frames using the following command:
+ROS2 also provides a way to echo the transform between two frames to the
+console. In a new terminal, use the following command:
 
 ```bash
-user@f1sim:~$ ros2 run tf2_ros tf2_echo [source_frame] [target_frame]
+ros2 run tf2_ros tf2_echo [source_frame] [target_frame]
+```
+
+It will continuously information about the two frames. Here is an example
+output:
+
+```bash
 At time 1622031731.625364060
-- Translation: [2.796, 1.039, 0.000] #in meters
+- Translation: [2.796, 1.039, 0.000]
 - Rotation: in Quaternion [0.000, 0.000, 0.202, 0.979]
 At time 1622031732.614745114
 - Translation: [1.608, 0.250, 0.000]
 - Rotation: in Quaternion [0.000, 0.000, 0.032, 0.999]
 ```
 
-The translation from the above output will be in the form [x,y,z], while the quaternion for rotation is
-[x,y,z,w]. (*Note: A rotation matrix of [0,0,0,1] means there is no rotation.*)
+> Translations are always in **meters**.
+
+The translation from the above output will be in the form [x,y,z], while the
+quaternion for rotation is [x,y,z,w]. (*Note: The quaternion [0,0,0,1] means
+there is no rotation.*)
 
 ### **LaserScan** for Vehicle Model
 The best way for the vehicle to assess its current distance from the nearest wall is to access the vehicle’s
