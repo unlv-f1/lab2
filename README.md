@@ -337,8 +337,11 @@ ros2 pkg create --build-type ament_python lab2_pkg
 Then, add the following dependencies in `/lab2_ws/src/lab2_pkg/package.xml`:
 
 ```xml
+<depend>geometry_msgs</depend>
 <depend>rclpy</depend>
 <depend>sensor_msgs</depend>
+<depend>tf2_ros</depend>
+<depend>tf2_py</depend>
 <exec_depend>ros2launch</exec_depend>
 ```
 
