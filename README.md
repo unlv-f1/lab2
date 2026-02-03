@@ -100,7 +100,7 @@ After this, in a new terminal (inside the container), run the following:
 cd /sim_ws
 source /opt/ros/foxy/setup.bash          # source underlay
 # (no need to source any overlay since we're not using any workspace builds)
-ros2 launch teleop_twist_keyboard teleop_twist_keyboard
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
 
 Have these two terminals up and running as you do the next lab.
