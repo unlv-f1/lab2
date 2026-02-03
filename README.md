@@ -131,6 +131,9 @@ is shown by the red lines drawn between each frame.
 To observe how the transform frames are changing in real time, drive the car
 using `teleop_twist_keyboard`.
 
+> If you ever close one of the panels by mistake and need it back, you can
+> click the **Panels** button in the upper left corner!
+
 ### TF2 Tools
 
 Let's try to generate a diagram for our transform tree. **Do not close your**
