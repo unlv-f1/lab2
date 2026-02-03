@@ -298,13 +298,189 @@ whose link will be used for submission.
 
 ## Part 2: Using ROS 2 TF2 Programmatically
 
-TODO: Finish this section
+An important transformation to know is learning how to convert between your
+car's laser frame and base link frame. In the simulator, these frames are
+`ego_racecar/base_link` frame and `ego_racecar/laser` frame. Now, on the
+physical car itself, the frames are a little different, where it is simply
+`/laser` and `/base_link`, so it's important to keep this in mind.
+
+![Base link and laser image](img/base-link-and-laser.png)
+
+In this section, you'll be applying your knowledge of Rigid Body transforms
+to convert the range at degree 0 (in front of the car) from the laser frame
+to the base frame.
+
+### 2-1: Deliverable Specification
+
+Your deliverable for this section will be a single package named `lab2_pkg`
+containing a single node called `transformer_node`. This node will subscribe to 
+the `/scan` topic for `LaserScan` messages. Then, **every 2 seconds**, it takes
+the latest range at degree 0 (in front of the car) and logs its coordinates 
+both in the **laser frame** and in the **base (link) frame**.
+
+Your package must also contain a launch file, such that you can launch
+`transformer_node` in the simulator using:
+
+```
+ros2 launch lab2_pkg lab2_launch.py
+```
+
+### 2-2: Base Code
+
+To start, create your package using the `ros2 pkg create` command:
+
+```bash
+cd /lab2_ws/src
+ros2 pkg create --build-type ament_python lab2_pkg
+```
+
+Then, add the following dependencies in `/lab2_ws/src/lab2_pkg/package.xml`:
+
+```xml
+<depend>rclpy</depend>
+<depend>sensor_msgs</depend>
+<exec_depend>ros2launch</exec_depend>
+```
+
+Make sure these are installed using:
+
+```bash
+cd /lab2_ws
+apt-get update
+rosdep install --from-paths src --ignore-src -y
+```
+
+Then, in `/lab2_ws/src/lab2_pkg/lab2_pkg`, create a new file named
+`transformer.py`. Make sure to add an entry point for it in
+`/lab2_ws/src/lab2_pkg/setup.py`. Then, copy and paste the following base code
+in `transformer.py`:
+
+```python
+from typing import Optional
+import rclpy
+import rclpy.time
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from tf2_ros import TransformException  # type: ignore
+from tf2_ros.buffer import Buffer
+from tf2_ros.transform_listener import TransformListener
+
+
+class TransformerNode(Node):
+    def __init__(self) -> None:
+        super().__init__("transformer_node")
+
+        self.declare_parameter("base_frame")
+        self.declare_parameter("laser_frame")
+
+        self.create_subscription(LaserScan, "/scan", self.scan_callback, 10)
+
+        self.create_timer(2.0, self.timer_callback)
+
+        self.tf_buffer = Buffer()  # Where transform data is stored
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+
+        self.latest_scan_msg: Optional[LaserScan] = None
+
+    def scan_callback(self, scan_msg: LaserScan) -> None:
+        self.latest_scan_msg = scan_msg
+
+    def timer_callback(self) -> None:
+        if self.latest_scan_msg is None:
+            return
+
+        # TODO: GET RANGE AT 0 DEGREES; REPLACE 1000 WITH INDEX OF FORWARD
+        forward_range = self.latest_scan_msg.ranges[1000]
+
+        base_frame = self.get_parameter("base_frame").value
+        laser_frame = self.get_parameter("laser_frame").value
+
+        try:
+            transform_laser_to_base = self.tf_buffer.lookup_transform(
+                base_frame,
+                laser_frame,
+                rclpy.time.Time(),
+            )
+        except TransformException:
+            self.get_logger().info("Could not look up transformation, skipping...")
+            return
+
+        # TODO: DO YOUR MATH HERE (See TransformStamped documentation)
+        #   Replace ... with your answers!
+
+        x_laser = ...
+        y_laser = ...
+        x_base = ...
+        y_base = ...
+
+        self.get_logger().info(
+            f"Coordinates of range at 0 deg in laser frame: {x_laser, y_laser}"
+        )
+        self.get_logger().info(
+            f"Coordinates of range at 0 deg in base frame: {x_base, y_base}"
+        )
+
+
+def main() -> None:
+    rclpy.init()
+    node = TransformerNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+```
+
+Explanations for the base code:
+
+* `__init__`
+  * Declares two required parameters for your laser frame and base frames.
+  * Subscribes to `/scan` and uses `scan_callback` as the callback.
+  * Creates a timer and uses `timer_callback` as the callback.
+  * Creates a `Buffer` object, which stores Transform data
+  * Creates a `TransformListener` which listens to the `/tf` topic and fills
+    the buffer as it receives more data.
+* `scan_callback`
+  * Stores the latest scan message received.
+* `timer_callback`
+  * If no scan message is availabe, immediately returns
+  * Gets base and laser frame names
+  * Looks up laser frames, covering the case where it fails as well.
+  * Logs to the console
+
+### 2-3: Your Tasks
+
+Your tasks will be to follow the instructions in the two `TODO` sections to
+finish the code.
+
+Then, create a launch file and add it as a data file in `setup.py`.
+
+Once built, the following command should launch node with the laser frame being
+`ego_racecar/laser` and the base frame being `ego_racecar/base_link`:
+
+```bash
+ros2 launch lab2_pkg lab2_launch.py
+```
+
+> **Optional Task**
+> 
+> The transform between the laser frame and base frame is static, and thus,
+> you could permanently store the transform data in an attribute in
+> `__init__`. However, the issue is that `self.tf_buffer.lookup_transform`
+> may not have received the transform data yet, raising a `TranformException`.
+> In the base code, the call to `self.tf_buffer.lookup_transform` is inside
+> the `timer_callback` method, not the `__init__` method.
+>
+> How could you make it so that once `self.tf_buffer.lookup_transform` is
+> successful, you wouldn't need to call it again?
+>
+> A more difficult question: How could you make it so that
+> `self.tf_buffer.lookup_transform` is only ever called once?
 
 ## Overall Deliverables and Submission
 
 Publish and upload your `lab2_ws` as a *private* Github repository. Share your
 collaboration rights with the TA as a collaborator, and submit a link to the
-repository on canvas. Checklist:
+repository on canvas.
+
+Checklist:
 
 * `SUBMISSION.md` file filled out and present in repository.
 * `lab2_pkg/` package present in repository.
