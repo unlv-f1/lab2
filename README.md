@@ -107,7 +107,7 @@ Have these two terminals up and running as you do the next lab.
 
 If you need further reference, refer to Lab 1 [Section 3.2](https://github.com/unlv-f1/lab1?tab=readme-ov-file#3-launching-the-simulator) for instructions.  
 
-### 1. Transforms
+### 1-2: Transforms
 
 RViz provides a way to visualize topics as they are being published to. This
 includes data such as:
@@ -117,17 +117,19 @@ includes data such as:
 * Transform data
 * Markers
 
-Let's add a new visualization. To do this, click the **Add** at the bottom left
-corner of RViz. This will bring up a popup for selecting a visualization to add.
-Ensure that the **By display type** tab is selected and scroll down to **TF**
-and click it. Then, click the **OK** button.
+Let's add a new visualization. To do this, click the **Add** button at the
+bottom left corner of RViz. This will bring up a popup for selecting a
+visualization to add. Ensure that the **By display type** tab is selected and
+scroll down to **TF** and click it. Then, click the **OK** button.
 
 ![locating TF](img/lab1%20TF%20.png)
 
-The side panel **Displays** will now include **TF**. This allows visualization
-of the **Transform Tree**, which shows the hierarchy of transformation frames.
-To observe how the transform frames are changing in real time, drive around the
-car using `teleop_twist_keyboard`.
+The **Displays** panel on the left side of the window now includes a Display
+called **TF**. This display is a visualization of the **Transform Tree**, which
+is shown by the red lines drawn between each frame.
+
+To observe how the transform frames are changing in real time, drive the car
+using `teleop_twist_keyboard`.
 
 ### TF2 Tools
 
