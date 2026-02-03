@@ -468,11 +468,8 @@ ros2 launch lab2_pkg lab2_launch.py
 > In the base code, the call to `self.tf_buffer.lookup_transform` is inside
 > the `timer_callback` method, not the `__init__` method.
 >
-> How could you make it so that once `self.tf_buffer.lookup_transform` is
-> successful, you wouldn't need to call it again?
->
-> A more difficult question: How could you make it so that
-> `self.tf_buffer.lookup_transform` is only ever called once?
+> Question: How could you make it so that `self.tf_buffer.lookup_transform` is
+> only ever called once? (Hint: It has a fourth (optional) parameter.)
 
 ## Overall Deliverables and Submission
 
