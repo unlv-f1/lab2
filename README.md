@@ -57,14 +57,19 @@ cd ~
 git clone https://github.com/unlv-f1/lab2 lab2_ws
 ```
 
-Then, mount `~/lab2_ws` onto your Docker container, as you've done for Lab 1.
-You can do this either by using or using volume mounts.
+Then, mount `~/lab2_ws` onto your Docker container (just as you've done for
+Lab 1) by putting an additional line in your
+`~/sim_ws/f1tenth_gym_ros/docker-compose.yml` file:
 
-* [Link to lab 1 bind mount commands][lab1-bind-mounts]
-* [Link to TA's instructions on using volume mounts][ta-volume-mounts]
+```
+- ~/lab2_ws/src:/lab2_ws/src
+```
 
-[lab1-bind-mounts]: https://github.com/unlv-f1/lab1?tab=readme-ov-file#4-creating-a-workspace-and-bind-mounting-it-into-the-docker-container
-[ta-volume-mounts]: https://github.com/ederic-oytas/unlv-f1tenth-vscode-integration?tab=readme-ov-file#2-adding-a-new-volume-mount
+Then, rebuild and run your container again.
+
+**NOTE for those who have done the VSCode Integration**: The
+`docker-compose.yml` file you are changing is NOT the one in `f1tenth_gym_ros`,
+but the one you've copied into your folder root (e.g. `~`)
 
 ## Part 1: Familarizing Yourself With Transforms
 
